@@ -1,8 +1,11 @@
 {
     "name": "next-reviews",
     "private": "true",
-    "scripts":{
-        "dev":"next dev"
+    "scripts": {
+        "build":"next build",
+        "dev": "next dev",
+        "start": "next start"
+        
     },
     "dependencies": {
         "next": "^14.0.0",
