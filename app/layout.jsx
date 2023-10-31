@@ -1,9 +1,10 @@
 import Link from 'next/Link';
+import './globals.css';
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       {/* HTML belgesinin dilini belirtmek için  */}
-      <body suppressHydrationWarning={true}>
+      <body className="px-5 py-2"  suppressHydrationWarning={true}>
         <header>
           <nav>
             <ul>
@@ -14,7 +15,7 @@ export default function RootLayout({ children }) {
                 <Link href="/reviews">Reviews</Link>
               </li>
               <li>
-                <Link href="/about">About</Link>
+                <Link href="/about" prefetch={false}>About</Link>
               </li>
             </ul>
           </nav>
