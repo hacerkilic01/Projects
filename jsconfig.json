@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "paths":{
+            "@/*": ["./*"]
+        }
+    }
+}
+// Bu JSON formatındaki yapı TypeScript projelerinde kullanılıyor
