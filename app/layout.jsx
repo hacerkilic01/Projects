@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
           <NavBar />
         </header>
         <main className="grow py-3">{children}</main>
-        <footer className="border-t py-4 text-center text text-xs">
+        <footer className="border-t py-4 text-center text-slate-500 text text-xs">
           {/* border-t:üst kenarına bir kenarlık */}
           Game{" "}
           <a href="https://rawg.io/" target="_blank">
