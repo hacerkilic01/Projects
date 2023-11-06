@@ -1,10 +1,12 @@
 import Heading from "../components/Heading";
 import Link from "next/link";
 
-export default function Homepage() {
+export default async function Homepage() {
+  const review = await getFeaturedReview();
   return (
     <>
       {/* birden fazla JSX öğesini gruplamak için */}
+
       <Heading>Indie Gamer</Heading>
       <p className="pb-3">Only the best indie games, reviewed for you.</p>
       <div
