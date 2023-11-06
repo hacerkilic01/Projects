@@ -1,8 +1,14 @@
 import Heading from "../../../components/Heading";
-import { getReview } from "@/lib/reviews";
+import { getReview, getSlugs } from "@/lib/reviews";
 
-export default async function ReviewPage({params: { slug }}) {
+export async function generateStaticParams() {
+  const slugs = await getSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
+
+export default async function ReviewPage({ params: { slug } }) {
   const review = await getReview(slug);
+  console.log("[ReviewPage] rendering", slug);
   return (
     <>
       <Heading>{review.title}</Heading>
@@ -18,9 +24,9 @@ export default async function ReviewPage({params: { slug }}) {
         dangerouslySetInnerHTML={{ __html: review.body }}
         className="max-w-screen-sm prose prose-slate"
       />
-
-     
     </>
   );
 }
- {/* doğrudan HTML olarak render edilmesi durumunda güvenlik açıklarına yol açabilir bu tür durumları önlemek için React, içeriği render etmeden önce otomatik olarak kaçınmak için güvenlik önlemleri uygular. dangerous bunun için kullanılır*/}
+{
+  /* doğrudan HTML olarak render edilmesi durumunda güvenlik açıklarına yol açabilir bu tür durumları önlemek için React, içeriği render etmeden önce otomatik olarak kaçınmak için güvenlik önlemleri uygular. dangerous bunun için kullanılır*/
+}

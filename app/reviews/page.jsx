@@ -1,47 +1,43 @@
 import Link from "next/link";
 import Heading from "../../components/Heading";
-export default function ReviewsPage() {
+import { getReviews } from "@/lib/reviews";
+
+export default async function ReviewsPage() {
+  const reviews = await getReviews();
+  console.log("[ReviewsPage] reviews:", reviews);
+
   return (
     <>
       {/* birden fazla JSX öğesini gruplamak için */}
       <Heading>Reviews</Heading>
-      <ul className="flex flex-col gap-3">
-        <li className="bg-white border rounded shadow w-80 hover:shadow-xl">
-          <Link href="/reviews/hollow-knight">
-            <img
-              src="/images/hollow-knight.jpg"
-              alt=""
-              width="320"
-              height="180"
-              className="rounded-t"
-            />
-            <h2 className="font-semibold font-orbitron py-1 text-center">
-              {" "}
-              Hollow Knight{" "}
-            </h2>
-          </Link>
-        </li>
-        <li className="bg-white border rounded shadow w-80 hover:shadow-xl">
-          <Link href="/reviews/stardew-valley">
-            <img
-              src="/images/stardew-valley.jpg"
-              alt=""
-              width="320"
-              height="180"
-              className="rounded-t"
-            />
-            {/* mb marginbottom
-            gap: ögeler arası bosluk 
-            border: ögenin kenarları
-            rounded: köşeler için*/}
-
-            <h2 className="font-semibold font-orbitron py-1 text-center">
-              {" "}
-              Stardew Valley
-            </h2>
-          </Link>
-        </li>
+      <ul className="flex flex-row flex-wrap gap-3">
+        {reviews.map((review) => (
+          <li
+            key={review.slug}
+            className="bg-white border rounded shadow w-80 hover:shadow-xl"
+          >
+            <Link href={`/reviews/${review.slug}`}>
+              <img
+                src={review.image}
+                alt=""
+                width="320"
+                height="180"
+                className="rounded-t"
+              />
+              <h2 className="font-semibold font-orbitron py-1 text-center">
+                {review.title}
+              </h2>
+            </Link>
+          </li>
+        ))}
       </ul>
     </>
   );
 }
+
+/* mb marginbottom
+            gap: ögeler arası bosluk 
+            border: ögenin kenarları
+            rounded: köşeler için*/
+//             fle-wrap :container'ın boyutlarına sığmamaları durumunda nasıl davranacaklarını belirler
+//
